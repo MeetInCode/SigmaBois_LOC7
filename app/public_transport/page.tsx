@@ -46,7 +46,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+ 
 const getCarbonFootprint = (mode: string, duration: string) => {
   const hours = parseFloat(duration.split('h')[0]) || 
                 parseFloat(duration.split('hr')[0]) || 0;
@@ -168,12 +174,12 @@ export default function TransportSearch() {
       });
   
       const result = await response.json();
-      
+      console.log(result.isTicket);
       if (response.ok) {
-        if (result.response === 1) {
+        if (result.isTicket === 1) {
           // If response is 1, set showReward to true
           setShowReward(true);
-        } else if (result.response === 0) {
+        } else if (result.isTicket === 0) {
           // If response is 0, display invalid ticket message
           setErrorMessage("Invalid ticket uploaded");
         } else {
@@ -189,7 +195,11 @@ export default function TransportSearch() {
   
   
   return (
-    
+    <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+
+
     <main className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold text-center mb-4">Public Transport Search</h1>
@@ -332,6 +342,8 @@ export default function TransportSearch() {
                         Click to upload or drag and drop
                       </span>
                     </label>
+                    {errorMessage && <p>{errorMessage}</p>}
+
                   </div>
                 </div>
 
@@ -340,7 +352,7 @@ export default function TransportSearch() {
                     Uploading ticket...
                   </div>
                 )}
-                       {errorMessage && <p>{errorMessage}</p>}
+                
 
                 {showReward && (
                   <div className="bg-green-50 p-4 rounded-lg">
@@ -482,5 +494,8 @@ export default function TransportSearch() {
         )}
       </div>
     </main>
+    
+</SidebarInset>
+    </SidebarProvider>
   );
 }

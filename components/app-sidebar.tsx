@@ -1,182 +1,169 @@
-import * as React from "react"
+"use client"
 
-import { SearchForm } from "@/components/search-form"
-import { VersionSwitcher } from "@/components/version-switcher"
+import * as React from "react"
+import {
+  AudioWaveform,
+  BookOpen,
+  Bot,
+  Command,
+  Frame,
+  GalleryVerticalEnd,
+  Map,
+  PieChart,
+  Settings2,
+  SquareTerminal,
+} from "lucide-react"
+
+import { NavMain } from "@/components/nav-main"
+import { NavProjects } from "@/components/nav-projects"
+import { NavUser } from "@/components/nav-user"
+import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
+  SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import LanguageTranslationComponent from "@/components/LanguageTranslationComponent"
+import { Sun, Eye, Palette } from "lucide-react"
 
 // This is sample data.
 const data = {
-  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
+  teams: [
+    {
+      name: "Acme Inc",
+      logo: GalleryVerticalEnd,
+      plan: "Enterprise",
+    },
+    {
+      name: "Acme Corp.",
+      logo: AudioWaveform,
+      plan: "Startup",
+    },
+    {
+      name: "Evil Corp.",
+      logo: Command,
+      plan: "Free",
+    },
+  ],
   navMain: [
+    
     {
-      title: "Getting Started",
+      title: "Explore",
       url: "#",
+      icon: Bot,
       items: [
         {
-          title: "Installation",
-          url: "#",
+          title: "Search places",
+          url: "/maps",  // Add your URL here
         },
         {
-          title: "Project Structure",
-          url: "#",
+          title: "Public Transport",
+          url: "/public_transport",  // Add your URL here
+        },
+        {
+          title: "Review Page",
+          url: "/survey",  // Add your URL here
         },
       ],
     },
     {
-      title: "Building Your Application",
+      title: "Travel",
       url: "#",
+      icon: BookOpen,
       items: [
         {
-          title: "Routing",
-          url: "#",
+          title: "Community",
+          url: "/community",  // Add your URL here
         },
         {
-          title: "Data Fetching",
-          url: "#",
-          isActive: true,
-        },
-        {
-          title: "Rendering",
-          url: "#",
-        },
-        {
-          title: "Caching",
-          url: "#",
-        },
-        {
-          title: "Styling",
-          url: "#",
-        },
-        {
-          title: "Optimizing",
-          url: "#",
-        },
-        {
-          title: "Configuring",
-          url: "#",
-        },
-        {
-          title: "Testing",
-          url: "#",
-        },
-        {
-          title: "Authentication",
-          url: "#",
-        },
-        {
-          title: "Deploying",
-          url: "#",
-        },
-        {
-          title: "Upgrading",
-          url: "#",
-        },
-        {
-          title: "Examples",
-          url: "#",
+          title: "Local Voice based Guide",
+          url: "/agentcall",  // Add your URL here
         },
       ],
     },
     {
-      title: "API Reference",
+      title: "Plan",
       url: "#",
+      icon: SquareTerminal,
+      isActive: true,
       items: [
+        
         {
-          title: "Components",
-          url: "#",
+          title: "Booking",
+          url: "/bookings",  // Add your URL here
         },
         {
-          title: "File Conventions",
-          url: "#",
-        },
-        {
-          title: "Functions",
-          url: "#",
-        },
-        {
-          title: "next.config.js Options",
-          url: "#",
-        },
-        {
-          title: "CLI",
-          url: "#",
-        },
-        {
-          title: "Edge Runtime",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Architecture",
-      url: "#",
-      items: [
-        {
-          title: "Accessibility",
-          url: "#",
-        },
-        {
-          title: "Fast Refresh",
-          url: "#",
-        },
-        {
-          title: "Next.js Compiler",
-          url: "#",
-        },
-        {
-          title: "Supported Browsers",
-          url: "#",
-        },
-        {
-          title: "Turbopack",
-          url: "#",
+          title: "Itenary Planner",
+          url: "/travelplanner",  // Add your URL here
         },
       ],
     },
   ],
-}
+  projects: [
+    {
+      name: "Design Engineering",
+      url: "#",
+      icon: Frame,
+    },
+    {
+      name: "Sales & Marketing",
+      url: "#",
+      icon: PieChart,
+    },
+    {
+      name: "Travel",
+      url: "#",
+      icon: Map,
+    },
+  ],
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const switchTheme = (theme: string) => {
+    document.documentElement.setAttribute("data-theme", theme)
+    localStorage.setItem("selected-theme", theme) // Save user preference
+  }
+
+  React.useEffect(() => {
+    const savedTheme = localStorage.getItem("selected-theme") || "default"
+    document.documentElement.setAttribute("data-theme", savedTheme)
+  }, [])
   return (
-    <Sidebar {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <VersionSwitcher
-          versions={data.versions}
-          defaultVersion={data.versions[0]}
-        />
-        <SearchForm />
+        <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        {/* We create a SidebarGroup for each parent. */}
-        {data.navMain.map((item) => (
-          <SidebarGroup key={item.title}>
-            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {item.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={item.isActive}>
-                      <a href={item.url}>{item.title}</a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        ))}
+        <NavMain items={data.navMain} />
+        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
+      
+      <LanguageTranslationComponent />
+
+          {/* Theme Switch Buttons */}
+          <div className="flex justify-around p-3 border-t border-sidebar-border">
+            <button onClick={() => switchTheme("default")} className="p-2 hover:bg-sidebar-accent rounded-lg">
+              <Sun className="w-6 h-6 text-sidebar-foreground" />
+            </button>
+            <button onClick={() => switchTheme("deuteranopia")} className="p-2 hover:bg-sidebar-accent rounded-lg">
+              <Eye className="w-6 h-6 text-sidebar-foreground" />
+            </button>
+            <button onClick={() => switchTheme("tritanopia")} className="p-2 hover:bg-sidebar-accent rounded-lg">
+              <Palette className="w-6 h-6 text-sidebar-foreground" />
+            </button>
+          </div>
+          <SidebarFooter>
+        <NavUser user={data.user} />
+      </SidebarFooter>
       <SidebarRail />
+      
     </Sidebar>
   )
 }

@@ -81,8 +81,9 @@ const RestaurantCard: React.FC<RestaurantProps> = ({
       onClick={onClick}
       className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
         isActive 
-          ? 'bg-gradient-to-r from-violet-500 to-purple-500 text-white shadow-lg'
-          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+        ? 'bg-gradient-to-r from-primary to-yellow-400 text-white shadow-lg'
+        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+      
       }`}
     >
       {label}
@@ -166,7 +167,7 @@ const RestaurantCard: React.FC<RestaurantProps> = ({
       </div>
 
       <div className="p-6">
-        <div className="flex gap-4 mb-6 overflow-x-auto pb-2">
+        <div className="flex gap-2 mb-6 overflow-x-hidden pb-2 ">
           <TabButton
             label="Overview"
             isActive={activeTab === 'overview'}
@@ -249,9 +250,10 @@ const RestaurantCard: React.FC<RestaurantProps> = ({
               className="space-y-4"
             >
               <button
-                onClick={() => setIsReviewModalOpen(true)}
-                className="w-full px-4 py-3 bg-gradient-to-r from-violet-500 to-purple-500 text-white rounded-xl font-medium hover:from-violet-600 hover:to-purple-600 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center"
-              >
+  onClick={() => setIsReviewModalOpen(true)}
+  className="w-full px-4 py-3 bg-gradient-to-r from-primary to-yellow-400 text-white rounded-xl font-medium hover:from-primary-dark hover:to-yellow-500 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center"
+>
+
                 <MessageSquare className="w-5 h-5 mr-2" />
                 Write a Review
               </button>
@@ -336,7 +338,9 @@ const RestaurantCard: React.FC<RestaurantProps> = ({
             href={`https://www.google.com/maps?q=${latitude},${longitude}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-3 px-4 bg-gradient-to-r from-violet-500 to-purple-500 text-white rounded-xl font-medium text-center hover:from-violet-600 hover:to-purple-600 transition-all flex items-center justify-center"
+            className="flex-1 py-3 px-4 bg-gradient-to-r from-yellow-500 to-yellow-400 text-white rounded-xl font-medium text-center hover:from-yellow-600 hover:to-yellow-500 transition-all flex items-center justify-center"
+
+
           >
             <MapPin className="w-5 h-5 mr-2" />
             View on Map
