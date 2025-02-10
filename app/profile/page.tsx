@@ -151,14 +151,14 @@ export default function ProfilePage() {
                   <CardHeader className="text-center relative">
                     <div className="mx-auto mb-4 relative group">
                       <Avatar className="w-32 h-32 border-4 border-primary/10">
-                        <AvatarImage src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&auto=format&fit=crop&q=60" />
+                        <AvatarImage src="https://lh3.googleusercontent.com/a/ACg8ocJNMYa2DbRvJJIEWqjVlJ20yZxL0EYhkyGkFXQb-EncgtltP70=s288-c-no" />
                         <AvatarFallback>AP</AvatarFallback>
                       </Avatar>
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 rounded-full">
                         <Camera className="w-8 h-8 text-white" />
                       </div>
                     </div>
-                    <CardTitle className="text-2xl font-bold">Arjun Patel</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Meet Mehta</CardTitle>
                     <Badge className="absolute top-4 right-4 bg-green-500/10 text-green-500 hover:bg-green-500/20 transition-colors">
                       <div className="flex items-center gap-1">
                         <Award className="w-3 h-3" />
@@ -170,10 +170,10 @@ export default function ProfilePage() {
                     <div className="space-y-2">
                       <TooltipProvider>
                         {[
-                          { icon: <User className="w-4 h-4" />, text: "@arjunp", tooltip: "Username" },
-                          { icon: <Mail className="w-4 h-4" />, text: "arjun.p@gmail.com", tooltip: "Verified Email" },
+                          { icon: <User className="w-4 h-4" />, text: "@mee_meet", tooltip: "Username" },
+                          { icon: <Mail className="w-4 h-4" />, text: "mehtameet115@gmail.com", tooltip: "Verified Email" },
                           { icon: <Phone className="w-4 h-4" />, text: "+91 98765 43210", tooltip: "Phone Number" },
-                          { icon: <MapPin className="w-4 h-4" />, text: "Bengaluru, Karnataka", tooltip: "Location" }
+                          { icon: <MapPin className="w-4 h-4" />, text: "mumbai, Maharahtra", tooltip: "Location" }
                         ].map((item, index) => (
                           <Tooltip key={index}>
                             <TooltipTrigger asChild>

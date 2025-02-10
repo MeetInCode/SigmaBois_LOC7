@@ -47,7 +47,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-4 mb-8">
            
             <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
-            Discover & Explore – Hotels, Cinemas, and More <Globe className="h-5 md:h-7 w-5 md:w-7" />
+            Discover & Explore – Hotels,Toursists places,Cinemas, and More <Globe className="h-5 md:h-7 w-5 md:w-7" />
             </h2>
           </div>
           <p className="text-base md:text-lg mb-8 text-center max-w-2xl mx-auto">

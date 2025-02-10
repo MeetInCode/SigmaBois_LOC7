@@ -5,6 +5,12 @@ import Script from 'next/script';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Trophy, Star, Target, MapPin, Trash2, Sparkles } from 'lucide-react';
+import {
+    SidebarInset,
+    SidebarProvider,
+    SidebarTrigger,
+  } from "@/components/ui/sidebar"
+  import { AppSidebar } from "@/components/app-sidebar"
 
 // Types remain the same
 interface City {
@@ -131,6 +137,9 @@ export default function TrashDetectionGame() {
 
   return (
     <>
+     <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
       <Script
         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
         onLoad={handleMapsLoaded}
@@ -236,6 +245,8 @@ export default function TrashDetectionGame() {
           </p>
         </footer>
       </div>
+      </SidebarInset>
+    </SidebarProvider>
     </>
   );
 }

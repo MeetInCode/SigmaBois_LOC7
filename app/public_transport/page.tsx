@@ -295,7 +295,7 @@ export default function TransportSearch() {
                 </span>
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-md bg-white shadow-lg rounded-lg">
               <DialogHeader>
                 <DialogTitle>Upload Your Ticket</DialogTitle>
                 <DialogDescription>

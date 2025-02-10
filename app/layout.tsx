@@ -1,5 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import VoiceNavigationComponent from "@/components/voice"; 
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,6 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-    </html>
+
+        <div className="fixed bottom-4 right-4 z-50">
+        <VoiceNavigationComponent />
+      </div>
+   
+      </html>
   )
 }

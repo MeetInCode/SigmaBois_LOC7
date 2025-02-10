@@ -67,7 +67,7 @@ export default function Signup() {
       >
         <div className="absolute flex flex-col justify-between p-6 text-white">
           <div>
-            <h1 className="text-2xl font-bold">Nayi Udaan</h1>
+            <h1 className="text-2xl font-bold">Yaatra</h1>
           </div>
         </div>
       </div>

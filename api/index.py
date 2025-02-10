@@ -51,7 +51,7 @@ BUCKET_ID = os.getenv("APPWRITE_BUCKET_ID")
 
 databases = Databases(client)
 storage = Storage(client)
-groq_client = groq.Client(api_key="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")
+groq_client = groq.Client(api_key="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")
 # Constants
 GOOGLE_API_KEY ='AIzaSyAwevOnGuifv33Rodc_Uch0jSkFuTLi-7g'  # Replace with actual API key
 PLACES_SEARCH_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
@@ -59,6 +59,60 @@ PLACES_DETAILS_URL = "https://maps.googleapis.com/maps/api/place/details/json"
 PHOTO_URL_BASE = "https://maps.googleapis.com/maps/api/place/photo"
 client = Groq(api_key="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")
 
+WEBSITE_PROMPT = """
+You are a navigation assistant for Yatri, a mobility platform helping users navigate travel efficiently. Below are your key pages:
+
+/profile: Manage user account and personal details
+
+/maps: Interactive maps with real-time navigation (MAIN LANDING PAGE)
+
+/public_transport: Find buses/metros/trains and schedules
+
+/survey: Submit travel experience feedback
+
+/game: Play location-based learning games about urban mobility
+
+/community: Traveler discussions and shared journeys
+
+/agentcall: Connect directly with human travel assistants
+
+/bookings: Reserve tickets for transportation/services
+
+/travelplanner: Create/edit multi-modal trip itineraries
+
+Analyze voice transcripts and respond with ONLY the SINGLE-WORD page name most relevant to these scenarios:
+
+Location/navigation requests → maps
+("How do I get to...", "Show route to...")
+
+Public transit queries → public_transport
+("Next bus timing", "Nearest metro station")
+
+Reservation needs → bookings
+("Book qr ticket", "book taj mahal","book tourist places")
+
+Trip organization → travelplanner
+("Plan my weekend trip", "Save this itinerary")
+
+Support requests → agentcall
+("Talk to agent", "Know more abouta a place")
+
+User account actions → profile
+("Update password", "Check membership","check points","check activity")
+
+Community phrases → community
+("Share travel tips", "Find carpool groups")
+
+If unclear or generic request ("OK", "Go back"), default to profile. Never explain your choice.
+
+
+
+Examples:
+"Shortest bike path to museum" → maps
+"Buy metro pass" → bookings
+"Report broken station lift" → survey
+"Play transit quiz" → game
+"""
 
 example_format = {
   "travel_options": [
@@ -576,6 +630,42 @@ def send_confirmation_email():
     send_email(subject, body, email, ics_file)
 
     return jsonify({"message": "Confirmation email sent successfully!"}), 200
+
+
+
+@app.route('/api/voicereq', methods=['POST'])
+def process_transcription():
+    data = request.json
+    print(data)
+    
+    if not data or 'transcription' not in data:
+        return jsonify({'error': 'No transcription provided'}), 400
+    
+    try:
+        # Navigate using LLM
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {"role": "system", "content": WEBSITE_PROMPT},
+                {"role": "user", "content": data['transcription']}
+            ],
+            model="llama-3.1-8b-instant",
+            max_tokens=10
+        )
+       
+        
+        # Extract single-word page
+        destination = chat_completion.choices[0].message.content.strip().lower()
+        print(destination)
+        
+        return jsonify({
+            'transcription': data['transcription'],
+            'destination': destination 
+        }), 200
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+ 
                 
 if __name__ == "__main__":
     app.run(debug=True)

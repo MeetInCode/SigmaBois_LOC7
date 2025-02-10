@@ -31,15 +31,15 @@ import { Sun, Eye, Palette } from "lucide-react"
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Meet Mehta",
+    email: "mehtameet115@gmail.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "yaatra",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      plan: "Explore smart, travel green🌿",
     },
     {
       name: "Acme Corp.",
@@ -70,6 +70,10 @@ const data = {
         {
           title: "Review Page",
           url: "/survey",  // Add your URL here
+        },
+        {
+          title: "Play Game",
+          url: "/game",  // Add your URL here
         },
       ],
     },

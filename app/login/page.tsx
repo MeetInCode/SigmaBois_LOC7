@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Account, Client, OAuthProvider } from "appwrite";
+import { Github, Chrome } from "lucide-react";
 
 // Initialize Appwrite Client
 const client = new Client().setProject("67925af700164875e7f7");  // Replace with your Appwrite project ID
@@ -14,9 +15,9 @@ export default function Login() {
     const handleGoogleLogin = () => {
       try {
         account.createOAuth2Session(
-          OAuthProvider.Google, // GitHub as the OAuth provider
-          "http://localhost:3000/dashboard/profile", // Redirect to localhost on success
-          "http://localhost:3000/failed" // Redirect to localhost on failure
+          OAuthProvider.Google,
+          "http://localhost:3000/profile",
+          "http://localhost:3000/failed"
         );
       } catch (error) {
         console.error("GitHub Login Failed:", error);
@@ -26,11 +27,9 @@ export default function Login() {
     const handleGithubLogin = () => {
       try {
         account.createOAuth2Session(
-          OAuthProvider.Github, // provider
-          "http://localhost:3000/dashboard/profile", // Redirect to localhost on success
-          "http://localhost:3000/failed" // Redirect to localhost on failure
-        
-      
+          OAuthProvider.Github,
+          "http://localhost:3000/profile",
+          "http://localhost:3000/failed"
         );
       } catch (error) {
         console.error("GitHub Login Failed:", error);
@@ -41,7 +40,6 @@ export default function Login() {
   return (
     <div className="relative min-h-screen grid grid-cols-1 md:grid-cols-[60%,40%] font-[family-name:var(--font-geist-sans)]">
       {/* Left side for the image */}
-
       <div
         className="relative bg-cover bg-center rounded-tr-[10px] m-0.5 overflow-hidden"
         style={{
@@ -50,20 +48,19 @@ export default function Login() {
           clipPath: "polygon(0 0, 100% 0, 90% 100%, 0 100%)",
         }}
       >
-        <div className="absolute   flex flex-col justify-between p-6 text-white">
+        <div className="absolute flex flex-col justify-between p-6 text-white">
           <div>
-            <h1 className="text-2xl font-bold">Nayi Udaan</h1>
+            <h1 className="text-2xl font-bold">Yaatra</h1>
           </div>
         </div>
       </div>
-
 
       {/* Right side for the SignupForm */}
       <div className="flex items-center justify-center p-8">
         <form className="flex flex-col items-center gap-4 w-full max-w-md">
           <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold">Hi Designer</h1>
-            <p className="text-muted-foreground">Welcome to UISOCIAL</p>
+            <h1 className="text-3xl font-bold">Hi traveler</h1>
+            <p className="text-muted-foreground">Welcome Back, to Yaatra</p>
           </div>
           <div className="w-full grid gap-2">
             <Label htmlFor="email">Email</Label>
@@ -88,11 +85,25 @@ export default function Login() {
             </span>
           </div>
           <div className="grid grid-cols-2 gap-4 w-full">
-            <Button variant="outline" className="w-full" onClick={handleGoogleLogin}></Button>
-            <Button variant="outline" className="w-full" onClick={handleGithubLogin}></Button>
+            <Button 
+              variant="outline" 
+              className="w-full flex items-center justify-center gap-2" 
+              onClick={handleGoogleLogin}
+            >
+              <Chrome className="h-5 w-5" />
+              Google
+            </Button>
+            <Button 
+              variant="outline" 
+              className="w-full flex items-center justify-center gap-2" 
+              onClick={handleGithubLogin}
+            >
+              <Github className="h-5 w-5" />
+              GitHub
+            </Button>
           </div>
           <div className="text-center text-sm mt-4">
-            Don’t have an account?{" "}
+            Don't have an account?{" "}
             <a href="signup" className="text-red-500 underline underline-offset-4">
               Sign up
             </a>

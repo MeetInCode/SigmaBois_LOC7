@@ -178,7 +178,7 @@ export default function Page() {
                                     </div>
                                 </CardContent>
                                 <CardFooter className="flex justify-end p-4">
-                                    <Button onClick={() => handleBookNow(event)} className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg">
+                                    <Button onClick={() => handleBookNow(event)} className="w-full bg-yellow-600 hover:bg-yellow-300 text-white rounded-lg">
                                         Book Now
                                     </Button>
                                 </CardFooter>
