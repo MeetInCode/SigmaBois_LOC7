@@ -36,7 +36,7 @@ def get_itinerary(query: str) -> dict:
         # Initialize the Groq model and agent
         model = GroqModel(
             'deepseek-r1-distill-llama-70b',
-            api_key='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'
+            api_key=''
         )
 
         agent = Agent(
