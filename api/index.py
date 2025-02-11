@@ -51,13 +51,13 @@ BUCKET_ID = os.getenv("APPWRITE_BUCKET_ID")
 
 databases = Databases(client)
 storage = Storage(client)
-groq_client = groq.Client(api_key="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")
+groq_client = groq.Client(api_key="")
 # Constants
-GOOGLE_API_KEY ='AIzaSyAwevOnGuifv33Rodc_Uch0jSkFuTLi-7g'  # Replace with actual API key
+GOOGLE_API_KEY =''  # Replace with actual API key
 PLACES_SEARCH_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
 PLACES_DETAILS_URL = "https://maps.googleapis.com/maps/api/place/details/json"
 PHOTO_URL_BASE = "https://maps.googleapis.com/maps/api/place/photo"
-client = Groq(api_key="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")
+client = Groq(api_key="")
 
 WEBSITE_PROMPT = """
 You are a navigation assistant for Yatri, a mobility platform helping users navigate travel efficiently. Below are your key pages:
