@@ -18,5 +18,4 @@ pip install -r requirements.txt
 ```sh
 pnpm run dev
 ```
-
-[https://mega.nz/embed/05hUAKZZ#MUxY3A3rLgT0Mwi6afK0YHx99BksSTsTiad6q9eRNoc" allowfullscreen ></iframe>](https://mega.nz/file/05hUAKZZ#MUxY3A3rLgT0Mwi6afK0YHx99BksSTsTiad6q9eRNoc)
+https://mega.nz/file/05hUAKZZ#MUxY3A3rLgT0Mwi6afK0YHx99BksSTsTiad6q9eRNoc
