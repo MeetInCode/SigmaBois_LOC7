@@ -40,7 +40,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Initialize APIs
-gmaps = googlemaps.Client(key="AIzaSyBNshGF10FPBnYO4oaYTnN2Lxuu580rxd8")
+gmaps = googlemaps.Client(key="gmapapi")
 OPENWEATHER_API_KEY = "YOUR_OPENWEATHER_API_KEY"
 
 # Session state initialization
